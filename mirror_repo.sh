@@ -36,7 +36,7 @@ reposync -n -r ${REPO}
 #Clean out any old rpms
 repomanage -o -c ${REPO} | xargs rm -fv
 #Create the yum repo metadata
-createrepo ${REPO}
+createrepo --no-database ${REPO}
 
 
 if which clamscan
