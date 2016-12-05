@@ -37,3 +37,12 @@ reposync -n -r ${REPO}
 repomanage -o -c ${REPO} | xargs rm -fv
 #Create the yum repo metadata
 createrepo ${REPO}
+
+
+if which clamscan
+then
+	echo "running virus scan on ${MIRRORS_LOCATION}/${SNAPSHOT}/${REPO}"
+	clamscan -r ${MIRRORS_LOCATION}/${SNAPSHOT}/${REPO}
+else
+	echo "could not find clamscan. Skipping virus scan..."
+fi
