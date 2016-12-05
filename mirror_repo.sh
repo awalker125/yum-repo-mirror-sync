@@ -5,15 +5,10 @@ set -e
 
 export NOW=$(date +%Y%m%d%H%M%S)
 export THIS=$(basename $0)
-export RUNAS=$(whoami)
 export WHEREAMI=$(dirname $0)
-export LOG_DIR=/var/tmp
-export PROC=$$
-export LOG_ID=${PROC}
 export HOSTNAME=$(hostname)
-export OUTPUT_DIR=~/results
 export SNAPSHOT=$(( ($(date +%-m)-1)/3+1 ))Q$(date +%Y)
-
+export MIRRORS_LOCATION=/mirrors
 
 
 if [ -z "$1" ]
@@ -32,7 +27,7 @@ else
 	fi
 fi	
 
-BASEDIR=/mirrors/${SNAPSHOT}/${REPO}
+BASEDIR=${MIRRORS_LOCATION}/${SNAPSHOT}/${REPO}
 mkdir -p $BASEDIR
 cd $BASEDIR
 
